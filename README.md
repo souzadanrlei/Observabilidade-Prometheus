@@ -42,7 +42,7 @@ Antes de rodar o projeto, você precisará criar **três arquivos essenciais** n
 - Prometheus: http://localhost:9090
 - Grafana: http://localhost:3000
       Login padrão: usuário admin / senha admin
-
+---
 ## ⚙️ Arquivo prometheus.yml (exemplo)
     global:
     scrape_interval: 15s
@@ -56,7 +56,7 @@ Antes de rodar o projeto, você precisará criar **três arquivos essenciais** n
         static_configs:
         - targets: ['fastapi-app:8000']
         metrics_path: '/metrics'
-
+---
 ## 🐳 Arquivo docker-compose.yaml (exemplo)
     version: '3'
 
@@ -89,7 +89,7 @@ Antes de rodar o projeto, você precisará criar **três arquivos essenciais** n
     networks:
     monitoring:
 
-
+---
 ## 📬 Coleção Postman – fastapi-collection.json
 A coleção Postman inclui as seguintes rotas:
 
@@ -101,14 +101,14 @@ A coleção Postman inclui as seguintes rotas:
 - GET /metrics – Exposição de métricas para Prometheus
 
 Importe este arquivo no Postman para testar rapidamente a API.
-
+---
 ## ✅ Objetivo
 - Este projeto serve como um ambiente de estudo para aprender a:
 - Exportar métricas de uma API com FastAPI
 - Monitorar aplicações com Prometheus
 - Visualizar métricas com Grafana
 - Trabalhar com containers usando Docker Compose
-
+---
 ## 📌 Observações
 Certifique-se de que a porta 8000 esteja disponível localmente para a API.
 
