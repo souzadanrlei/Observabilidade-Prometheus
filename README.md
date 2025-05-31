@@ -110,6 +110,6 @@ Importe este arquivo no Postman para testar rapidamente a API.
 - Trabalhar com containers usando Docker Compose
 ---
 ## 📌 Observações
-Certifique-se de que a porta 8000 esteja disponível localmente para a API.
+- Certifique-se de que a porta 8000 esteja disponível localmente para a API.
 
 Após iniciar o Grafana, você pode configurar o Prometheus como fonte de dados usando a URL: http://prometheus:9090.# Observabilidade-Prometheus
