@@ -1,0 +1,124 @@
+{
+  "info": {
+    "_postman_id": "b1234567-89ab-cdef-0123-456789abcdef",
+    "name": "FastAPI Metrics App",
+    "description": "Coleção de requisições para testar endpoints da API FastAPI com observabilidade.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "📍 Root Endpoint",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": [""]
+        },
+        "description": "Retorna uma mensagem de boas-vindas da API."
+      },
+      "response": []
+    },
+    {
+      "name": "➕ Criar Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type", 
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Item\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/items",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["items"]
+        },
+        "description": "Cria um novo item com o nome fornecido."
+      },
+      "response": []
+    },
+    {
+      "name": "🔍 Buscar Item por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/items/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["items", "1"]
+        },
+        "description": "Retorna o item com ID 1."
+      },
+      "response": []
+    },
+    {
+      "name": "✏️ Atualizar Item",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Updated Item\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/items/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["items", "1"]
+        },
+        "description": "Atualiza o item de ID 1 com um novo nome."
+      },
+      "response": []
+    },
+    {
+      "name": "❌ Deletar Item",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/items/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["items", "1"]
+        },
+        "description": "Remove o item de ID 1."
+      },
+      "response": []
+    },
+    {
+      "name": "📊 Coletar Métricas (Prometheus)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/metrics",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["metrics"]
+        },
+        "description": "Exibe métricas da aplicação no formato Prometheus."
+      },
+      "response": []
+    }
+  ]
+}
