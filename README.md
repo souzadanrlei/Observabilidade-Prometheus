@@ -10,6 +10,7 @@ Este projeto tem como objetivo estudar o uso do **Prometheus** para observabilid
 - 🔭 Prometheus  
 - 📈 Grafana  
 - ⚡ FastAPI
+- 🔵 Go Lang
 
 ---
 
@@ -100,7 +101,76 @@ A coleção Postman inclui as seguintes rotas:
 - DELETE /items/{id} – Exclusão de item
 - GET /metrics – Exposição de métricas para Prometheus
 
-Importe este arquivo no Postman para testar rapidamente a API.
+---
+## 🧪 Instrumentação de servidor HTTP escrito em Go
+Neste exemplo, criamos um servidor HTTP Go simples e o instrumentamos com um contador Prometheus para rastrear o número de requisições recebidas.
+
+/server.go:
+```
+package main
+
+import (
+   "fmt"
+   "net/http"
+)
+
+func ping(w http.ResponseWriter, req *http.Request) {
+   fmt.Fprintf(w, "pong")
+}
+
+func main() {
+   http.HandleFunc("/ping", ping)
+   http.ListenAndServe(":8090", nil)
+}
+```
+Executar:
+```
+go build server.go
+./server
+```
+Acesse: http://localhost:8090/ping
+
+# Adicionando métricas com Prometheus:
+go
+```
+package main
+
+import (
+   "fmt"
+   "net/http"
+
+   "github.com/prometheus/client_golang/prometheus"
+   "github.com/prometheus/client_golang/prometheus/promhttp"
+)
+
+var pingCounter = prometheus.NewCounter(
+   prometheus.CounterOpts{
+       Name: "ping_request_count",
+       Help: "No of requests handled by Ping handler",
+   },
+)
+
+func ping(w http.ResponseWriter, req *http.Request) {
+   pingCounter.Inc()
+   fmt.Fprintf(w, "pong")
+}
+
+func main() {
+   prometheus.MustRegister(pingCounter)
+
+   http.HandleFunc("/ping", ping)
+   http.Handle("/metrics", promhttp.Handler())
+   http.ListenAndServe(":8090", nil)
+}
+```
+Executar:
+```
+go mod init prom_example
+go mod tidy
+go run server.go
+```
+Agora as métricas estarão disponíveis em: http://localhost:8090/metrics
+
 ---
 ## ✅ Objetivo
 - Este projeto serve como um ambiente de estudo para aprender a:
