@@ -11,3 +11,7 @@ scrape_configs:
     metrics_path: /metrics  # Caminho onde o FastAPI expõe as métricas
     static_configs:
       - targets: ['fastapi-app:8000']  # Nome do container + porta
+  - job_name: simple_server
+    metrics_path: /metrics # Caminho onde o Servidor Go expõe as métricas
+    static_configs:
+      - targets: ["host.docker.internal:8090"]  # Consumindo rotas de fora do container
